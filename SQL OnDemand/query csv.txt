@@ -1,0 +1,25 @@
+SELECT 
+    r.filename() as FileName,
+    r.filepath() as FilePath,
+    *
+FROM 
+    OPENROWSET
+    (
+        BULK 'https://zzshakasynapseadlsgen2.dfs.core.windows.net/stk/companylist/companylist2020.csv',
+        FORMAT='CSV',
+        FIRSTROW=2,
+        FIELDTERMINATOR =',', 
+        ROWTERMINATOR = '\n', 
+        FIELDQUOTE = '"' 
+    ) 
+    WITH 
+    (
+        AddressID       VARCHAR(200),
+        CustomerID      VARCHAR(200),
+        AddressLine1    VARCHAR(200),
+        AddressLine2    VARCHAR(200),
+        State           VARCHAR(200),
+        ZipCode         VARCHAR(200),
+        CreatedDate     VARCHAR(200),
+        UpdatedDate1    VARCHAR(200)
+    ) r
