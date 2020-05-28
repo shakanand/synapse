@@ -1,9 +1,8 @@
-CREATE DATABASE SCOPED CREDENTIAL sqlmsi  WITH IDENTITY = 'Managed Service Identity'
+DROP EXTERNAL DATA SOURCE zzshakaAzureDataLakeStore
 
-CREATE EXTERNAL DATA SOURCE AzureDataLakeStore
+CREATE EXTERNAL DATA SOURCE zzshakaAzureDataLakeStore
 WITH
-  ( LOCATION = 'abfss://piawareadlssynapse.azuredatalakestore.net' ,
-    CREDENTIAL = sqlmsi ,
+  ( LOCATION = N'abfss://primarycontainer@piawareadlssynapse.dfs.core.windows.net/' ,
     TYPE = HADOOP
   ) ;
 
@@ -29,5 +28,7 @@ CREATE EXTERNAL TABLE [dbo].[zzextDimProductSubcategory]
 	[FrenchProductSubcategoryName] [nvarchar](50) ,
 	[ProductCategoryKey] [int] 
 )
-WITH (DATA_SOURCE = AzureDataLakeStore,LOCATION = N'/primarycontainer/bcp/DimProductSubcategory.txt',FILE_FORMAT = [HiveFileFormat_01],REJECT_TYPE = VALUE,REJECT_VALUE = 0)
+WITH (DATA_SOURCE = zzshakaAzureDataLakeStore,LOCATION = N'/bcp/DimProductSubcategory.txt',FILE_FORMAT = [HiveFileFormat_01],REJECT_TYPE = VALUE,REJECT_VALUE = 0)
 GO
+
+SELECT * FROM [zzextDimProductSubcategory]
