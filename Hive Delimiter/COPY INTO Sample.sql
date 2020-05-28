@@ -37,11 +37,12 @@ CREATE TABLE [dbo].SampleHandleQuotes
 	[Col4] 
 ) 
 
-COPY INTO [dbo].SampleHandleQuotes
+COPY INTO [dbo].SampleHandleQuotes (Col1,Col2,Col3,Col4)
 FROM 'https://piawareadlssynapse.dfs.core.windows.net/primarycontainer/bcp/SampleHandleQuotes.dat'
 WITH (
     FILE_TYPE = 'CSV',
-    CREDENTIAL=(IDENTITY= 'Storage Account Key', SECRET=''),
+    --CREDENTIAL=(IDENTITY= 'Storage Account Key', SECRET=''),
+	--CREDENTIAL=(IDENTITY= 'Managed Identity'),
     FIELDTERMINATOR='0x01',
 	FIELDQUOTE='',
     ROWTERMINATOR='\n',
@@ -50,5 +51,3 @@ WITH (
 	MAXERRORS = 0,
 	FIRSTROW = 1
 )
-
-
