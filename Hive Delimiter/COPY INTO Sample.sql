@@ -18,8 +18,8 @@ FROM 'https://piawareadlssynapse.dfs.core.windows.net/primarycontainer/bcp/DimPr
 WITH (
     FILE_TYPE = 'CSV',
     CREDENTIAL=(IDENTITY= 'Storage Account Key', SECRET=''),
-    FIELDQUOTE = '"',
     FIELDTERMINATOR='0x01',
+	FIELDQUOTE='',
     ROWTERMINATOR='\n',
     ENCODING = 'UTF8',
     DATEFORMAT = 'ymd',
@@ -27,4 +27,28 @@ WITH (
 	FIRSTROW = 1
 )
 
-SELECT * FROM [dbo].[zzDimProductSubcategory]
+
+
+CREATE TABLE [dbo].SampleHandleQuotes
+(
+	[Col1] ,
+	[Col2] ,
+	[Col3] ,
+	[Col4] 
+) 
+
+COPY INTO [dbo].SampleHandleQuotes
+FROM 'https://piawareadlssynapse.dfs.core.windows.net/primarycontainer/bcp/SampleHandleQuotes.dat'
+WITH (
+    FILE_TYPE = 'CSV',
+    CREDENTIAL=(IDENTITY= 'Storage Account Key', SECRET=''),
+    FIELDTERMINATOR='0x01',
+	FIELDQUOTE='',
+    ROWTERMINATOR='\n',
+    ENCODING = 'UTF8',
+    DATEFORMAT = 'ymd',
+	MAXERRORS = 0,
+	FIRSTROW = 1
+)
+
+
