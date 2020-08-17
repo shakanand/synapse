@@ -1,7 +1,15 @@
 SELECT 
     r.filename() as FileName,
     r.filepath() as FilePath,
-    *
+	[Symbol],	
+	[Name]	,	
+	[LastSale]  ,
+	[MarketCap]	,
+	[IPOyear]	,
+	[Sector]	,
+	[industry]  ,
+	[Summary Quote] 
+    
 FROM 
     OPENROWSET
     (
@@ -14,12 +22,13 @@ FROM
     ) 
     WITH 
     (
-        AddressID       VARCHAR(200),
-        CustomerID      VARCHAR(200),
-        AddressLine1    VARCHAR(200),
-        AddressLine2    VARCHAR(200),
-        State           VARCHAR(200),
-        ZipCode         VARCHAR(200),
-        CreatedDate     VARCHAR(200),
-        UpdatedDate1    VARCHAR(200)
+	[Symbol]	VARCHAR(100),
+	[Name]		VARCHAR(100),
+	[LastSale]  VARCHAR(200),
+	[MarketCap]	VARCHAR(20),
+	[IPOyear]	VARCHAR(20),
+	[Sector]	VARCHAR(100),
+	[industry]  VARCHAR(100),
+	[Summary Quote] VARCHAR(200)
     ) r
+
