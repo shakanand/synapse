@@ -1,0 +1,6 @@
+%%spark
+import com.microsoft.spark.sqlanalytics.utils.Constants
+import org.apache.spark.sql.SqlAnalyticsConnector._
+
+val spark_read = spark.read.sqlanalytics("fasqlpoolshaka.dbo.FlightData_Summary")
+spark_read.show()

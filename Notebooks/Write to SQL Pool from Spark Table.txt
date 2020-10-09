@@ -1,0 +1,7 @@
+%%spark
+import com.microsoft.spark.sqlanalytics.utils.Constants
+import org.apache.spark.sql.SqlAnalyticsConnector._
+
+
+val dim_loan_purpose =spark.sql("SELECT * FROM flightrawdata WHERE flight = 'AAL2331 '")
+dim_loan_purpose.write.sqlanalytics("fasqlpoolshaka.dbo.rawdata_flight_AAL2331", Constants.INTERNAL)
