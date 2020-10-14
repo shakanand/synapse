@@ -1,0 +1,14 @@
+-- In Master
+CREATE LOGIN shakaadmin WITH password='PasswordHere';
+CREATE USER shakaadmin FROM LOGIN shakaadmin
+
+
+-- In User DB
+CREATE USER shakaadmin FROM LOGIN shakaadmin
+EXEC sp_addrolemember 'db_owner', 'shakaadmin'
+EXEC sp_addrolemember 'largerc',  'shakaadmin'
+
+--smallrc
+--mediumrc
+--largerc
+--xlargerc
