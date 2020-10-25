@@ -2,11 +2,18 @@
 CREATE LOGIN shakaadmin WITH password='PasswordHere';
 CREATE USER shakaadmin FROM LOGIN shakaadmin
 
+CREATE USER [user1@microsoft.com]  FROM EXTERNAL PROVIDER
+
 
 -- In User DB
 CREATE USER shakaadmin FROM LOGIN shakaadmin
 EXEC sp_addrolemember 'db_owner', 'shakaadmin'
 EXEC sp_addrolemember 'largerc',  'shakaadmin'
+
+CREATE USER [user1@microsoft.com]  FROM EXTERNAL PROVIDER
+EXEC sp_addrolemember  'db_owner','user1@microsoft.com'
+EXEC sp_droprolemember 'db_owner','user1@microsoft.com'
+
 
 --smallrc
 --mediumrc
