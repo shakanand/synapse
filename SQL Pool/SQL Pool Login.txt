@@ -1,0 +1,11 @@
+CREATE USER [streamanalytics2]  FROM EXTERNAL PROVIDER
+CREATE USER [streamanalytics2]  FROM EXTERNAL PROVIDER
+EXEC sp_addrolemember  'db_owner','streamanalytics2'
+EXEC sp_droprolemember 'db_owner','streamanalytics2'
+
+
+CREATE LOGIN shakaadmin WITH password='Password@123';
+CREATE USER shakaadmin FROM LOGIN shakaadmin
+CREATE USER shakaadmin FROM LOGIN shakaadmin
+EXEC sp_addrolemember 'db_owner', 'shakaadmin'
+EXEC sp_addrolemember 'largerc',  'shakaadmin'
