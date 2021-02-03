@@ -14,6 +14,7 @@ CREATE USER [user1@microsoft.com]  FROM EXTERNAL PROVIDER
 EXEC sp_addrolemember  'db_owner','user1@microsoft.com'
 EXEC sp_droprolemember 'db_owner','user1@microsoft.com'
 
+EXEC sp_addrolemember 'db_exporter',[mike@contoso.com]
 
 --smallrc
 --mediumrc

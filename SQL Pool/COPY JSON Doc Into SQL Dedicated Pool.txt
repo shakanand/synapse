@@ -1,0 +1,16 @@
+create table dbo.JSONDump01(ID INT IDENTITY(1,1), JSONContent1 VARCHAR(MAX))
+WITH ( HEAP );
+
+
+
+COPY INTO [dbo].JSONDump01 ( JSONContent1 1)
+FROM 'https://jsondataadls.blob.core.windows.net/fs1/json_opendataset/biorxiv_medrxiv/pdf_json/*'
+WITH (
+    FILE_TYPE = 'CSV',
+    CREDENTIAL=(IDENTITY= 'Storage Account Key', SECRET=''),
+    FIELDQUOTE = '',
+    FIELDTERMINATOR='\n',
+    ROWTERMINATOR='\n',
+    ENCODING = 'UTF8',
+    FIRSTROW = 1
+	)
