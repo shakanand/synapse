@@ -20,3 +20,25 @@ EXEC sp_addrolemember 'db_exporter',[mike@contoso.com]
 --mediumrc
 --largerc
 --xlargerc
+
+Azure SQL
+
+
+Master
+CREATE LOGIN shakaadmin1 WITH password='';
+CREATE USER  shakaadmin1 FROM LOGIN shakaadmin1
+
+Uesr DB
+CREATE USER  shakaadmin1 FROM LOGIN shakaadmin1
+EXEC sp_addrolemember  'db_owner','shakaadmin1'
+
+MSI
+CREATE USER zzshakaazurepurview  FROM EXTERNAL PROVIDER
+EXEC sp_addrolemember  'db_owner','zzshakaazurepurview'
+
+GRANT VIEW SERVER STATE TO shakaadmin1
+
+GRANT VIEW SERVER STATE TO shakaadmin1
+GRANT CONNECT SQL TO shakaadmin1
+GRANT VIEW SERVER STATE TO shakaadmin1
+GRANT VIEW ANY DEFINITION  TO shakaadmin1
